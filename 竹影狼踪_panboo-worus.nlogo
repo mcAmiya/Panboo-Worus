@@ -831,7 +831,7 @@ true
 Line -7500403 true 150 0 150 150
 
 panda
-true
+false
 0
 Circle -1 true false 165 120 0
 Circle -1 true false 69 24 162
