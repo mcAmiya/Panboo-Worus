@@ -486,183 +486,87 @@ NIL
 HORIZONTAL
 
 @#$#@#$#@
-## 这是什么？
-
-该模型探讨了捕食者-猎物生态系统的稳定性。如果这样的系统倾向于导致一个或多个物种灭绝，则称为不稳定系统。相比之下，如果一个系统能够随着时间的推移保持稳定，尽管人口规模存在波动，那么这个系统就是稳定的。
-
-## 它是如何工作的
-
-这个模型有两个主要变体。
-
-在第一种变体中，即“绵羊狼”版本，狼和绵羊在风景中随机漫步，而狼则寻找绵羊作为猎物。每一步都需要狼消耗能量，它们必须吃绵羊来补充能量——当它们耗尽能量时，就会死亡。为了让种群继续繁殖，每只狼或羊在每个时间步都有固定的繁殖概率。在这种变体中，我们将草建模为“无限”，这样绵羊总是有足够的食物吃，我们没有明确地建模草的吃或生长。因此，绵羊不会通过进食或移动来获得或失去能量。这种变化产生了有趣的种群动态，但最终是不稳定的。该模型的这种变体特别适合在营养丰富的环境中相互作用的物种，例如培养皿中的两种细菌菌株（Gause，1934）。
-
-第二种变体，“绵羊-狼-草”版本除了狼和绵羊外，还明确地模拟了草（绿色）。狼的行为与第一种变体相同，但这一次绵羊必须吃草以维持能量——当它们耗尽能量时，就会死亡。草一旦被吃掉，只有在一段固定的时间后才会重新生长。这种变化比第一种更复杂，但通常是稳定的。它更接近于经典的Lotka-Volterra种群振荡模型。经典的LV模型虽然假设种群可以呈现真实值，但在小种群中，这些模型低估了灭绝，而像这里这样的基于代理的模型提供了更现实的结果。（参见Wilensky&Rand，2015；第4章）。
-
-Wilensky和Reisman（1998；2006）的两篇论文描述了该模型的构建，如下所述。
-
-## 如何使用它
-
-1.将模型版本选择器设置为“绵羊狼草”，以包括模型中的吃草和生长，或设置为“羊狼”，仅包括狼（黑色）和绵羊（白色）。
-2.调整滑块参数（见下文），或使用默认设置。
-3.按下设置按钮。
-4.按下GO按钮开始模拟。
-5.查看监视器，了解当前的人口规模
-6.查看人口图，观察人口随时间波动
-
-参数：
-模型版本：我们是以绵羊、狼和草为模型，还是只以绵羊和狼为模型
-设定的初始数量：绵羊种群的初始规模
-初始数量狼：狼种群的初始规模
-绵羊采食：绵羊每吃掉一片草地所获得的能量（注意，这在绵羊狼模型版本中没有使用）
-狼-金-肉：每吃掉一只羊，狼就能获得多少能量
-绵羊繁殖：绵羊在每个时间步长繁殖的概率
-狼繁殖：狼在每个时间步繁殖的概率
-草再生时间：草被吃掉后需要多长时间才能再生（注意，这在绵羊狼模型版本中没有使用）
-表演能源？：是否以数字形式显示每只动物的能量
-
-笔记：
-- 狼每走一步，就会扣减一个单位的能量
-- 在运行绵羊-狼-草模型版本时，绵羊每走一步都会扣除一个单位的能量
-
-有三个监视器显示狼、绵羊和草的种群数量，还有一个种群图显示随时间变化的种群值。
-
-如果没有狼，绵羊太多，模型运行就会停止。
-
-## 注意事项
-
-在运行绵羊-狼模型变异时，观察绵羊和狼的种群波动。请注意，每个群体规模的增加和减少是相关的。它们之间有什么关系？最终会发生什么？
-
-在绵羊-狼-草模型变化中，注意添加到种群图中的绿线，表示草量的波动。现在这三个群体的规模似乎有什么关系？对此有何解释？
-
-为什么你认为模型的一些变体可能是稳定的，而另一些则不是？
-
-## 尝试的事情
-
-尝试在各种设置下调整参数。模型的稳定性对特定参数有多敏感？
-
-你能在绵羊-狼模型变异中找到任何产生稳定生态系统的参数吗？
-
-尝试运行羊-狼-草模型变体，但将INITIAL-NUMBER-wolves设置为0。这就形成了一个只有绵羊和草的稳定生态系统。为什么这可能是稳定的，而只有绵羊和狼的变异则不是？
-
-请注意，在稳定的环境下，人口往往以可预测的速度波动。你能找到任何参数来加速或减慢它吗？
-
-
-## 扩展模型
-
-有很多方法可以改变模型，使其只与狼和羊（没有草）保持稳定。有些将需要在其中编码新元素或更改现有行为。你能开发这样一个版本吗？
-
-尝试改变繁殖规则——例如，如果繁殖取决于能量而不是由固定概率决定，会发生什么？
-
-你能修改一下这个模型，让羊群聚在一起吗？
-
-你能修改模型，让狼主动追羊吗？
-
-## NETLOGO 功能
-
-Note the use of breeds to model two different kinds of "turtles": wolves and sheep. Note the use of patches to model grass.
-
-Note the use of the ONE-OF agentset reporter to select a random sheep to be eaten by a wolf.
-
-### 行为空间特征
-
-有关BehaviorSpace和NetLogo 6.4.0中引入的功能的更多信息，请参阅[文档](https://ccl.northwestern.edu/netlogo/docs/behaviorspace.html).
-
-“新行为空间功能”实验说明了NetLogo 6.4.0中引入的一些行为空间功能。您可以使用工具->行为空间菜单项打开行为空间。单击编辑按钮查看实验的详细信息。
-
-请注意使用了3次重复，因此有足够的数据来计算所有重复数据可用的步骤中指标的标准偏差。
-
-请注意返回列表的指标的使用，这些指标可以在列表和统计输出中处理。
-
-请注意，每隔一个刻度就使用报告器有条件地记录指标。
-
-注意使用实验前和实验后命令来显示实验结束时指挥中心的总运行时间。
-
-单击“确定”按钮完成查看/编辑实验。
-
-“狼羊杂交”实验说明了使用报告器来捕捉有趣的行为，在这种情况下，模拟的近似周期性。
-
-“BehaviorSpace运行3个实验”实验展示了如何使用子实验语法（在NetLogo 6.4.0中介绍）运行三个不同的实验。如果您取消选中“更新视图”，选中“更新绘图和监视器”，并为“并行同步运行”选择1，则绘图将显示实验的显著差异。结果也会写入指挥中心。由于有列表报告器作为指标，因此使用列表输出格式没有价值。由于只有一次重复，因此使用统计输出格式没有价值。
-
-“BehaviorSpace每次实验运行3个变量值”实验是如何使用子实验语法以非组合方式尝试变量的多个值的示例。请注意，需要提供默认值，因为子实验只显式地给出了其中一个变量的值。
-
-“BehaviorSpace子集”实验利用子实验语法在一行上运行多个组合。将其与实验“行为空间组合”中相同变量值的组合进行比较。
-
-## 尝试的东西-行为空间
-
-使用EXPORT按钮将“New BehaviorSpace Features”实验另存为XML文件。然后打开狼羊步幅继承模型，使用IMPORT按钮将“新行为空间特征”实验添加到模型中。在这个模型中运行实验。
-
-创建自己的实验来探索不同变量是如何相互作用的。你能找到的最稳定的动态组合是什么？
-
-通过“新行为空间特征”实验，探索改变您对更新视图、更新绘图和监视器以及并行同步运行的选择对总时间的影响。哪种组合最快？最慢的？
-
-
-### Reproducibility of Experiments
-
-The experiment “New BehaviorSpace Features Reproducible” produces the same numerical results every time it is run. You can see this by running the experiment twice and saving spreadsheet output with two different names. If you compare the files they will differ only in the line that includes the time at which the experiment was run.
-
-Contrast this to what happens when you do the same thing with the experiment “New BehaviorSpace Features”. In this case the results vary between runs because the NetLogo code includes primitives that introduce randomness, such as RANDOM, RANDOM-XCOR, RANDOM-YCOR and RANDOM-FLOAT. Sometimes it is desirable to have the same outcome each time the experiment is run, for example to show interesting behavior that only happens some of the time or to create a predictable lesson or demonstration. The output of the random functions is made reproducible by the line "random-seed (474 + behaviorspace-run-number)" in the setup command section.
-
-What is the effect of each of the following changes on multiple experiment runs:
-
-- Changing 474 to another number?
-- Removing the addition of behaviorspace-run-number?
-- Moving setup to before the random-seed line?
-- Replacing the random-seed line with new-seed?
-
-With the experiments “New BehaviorSpace Features” and “New BehaviorSpace Features Reproducible” explore whether output values change when you try the following actions:
-
-- Use the slider to vary `wolf-gain-from-food`
-- Use sliders to change other variables
-- Use the chooser to select `sheep-wolves`
-- Use the switch to turn on `show-energy?`
-
-Output values for the experiment “New BehaviorSpace Features Reproducible” remain unchanged because the value of all Interface variables is specified. Note that when you start a new experiment the variables section specifies all the slider variables, but not any chooser or switch variables.
-
-## RELATED MODELS
-
-Look at Rabbits Grass Weeds for another model of interacting populations with different rules.
-
-## CREDITS AND REFERENCES
-
-Wilensky, U. & Reisman, K. (1998). Connected Science: Learning Biology through Constructing and Testing Computational Theories -- an Embodied Modeling Approach. International Journal of Complex Systems, M. 234, pp. 1 - 12. (The Wolf-Sheep-Predation model is a slightly extended version of the model described in the paper.)
-
-Wilensky, U. & Reisman, K. (2006). Thinking like a Wolf, a Sheep or a Firefly: Learning Biology through Constructing and Testing Computational Theories -- an Embodied Modeling Approach. Cognition & Instruction, 24(2), pp. 171-209. http://ccl.northwestern.edu/papers/wolfsheep.pdf .
-
-Wilensky, U., & Rand, W. (2015). An introduction to agent-based modeling: Modeling natural, social and engineered complex systems with NetLogo. Cambridge, MA: MIT Press.
-
-Lotka, A. J. (1925). Elements of physical biology. New York: Dover.
-
-Volterra, V. (1926, October 16). Fluctuations in the abundance of a species considered mathematically. Nature, 118, 558–560.
-
-Gause, G. F. (1934). The struggle for existence. Baltimore: Williams & Wilkins.
-
-## HOW TO CITE
-
-If you mention this model or the NetLogo software in a publication, we ask that you include the citations below.
-
-For the model itself:
-
-* Wilensky, U. (1997).  NetLogo Wolf Sheep Predation model.  http://ccl.northwestern.edu/netlogo/models/WolfSheepPredation.  Center for Connected Learning and Computer-Based Modeling, Northwestern University, Evanston, IL.
-
-Please cite the NetLogo software as:
-
-* Wilensky, U. (1999). NetLogo. http://ccl.northwestern.edu/netlogo/. Center for Connected Learning and Computer-Based Modeling, Northwestern University, Evanston, IL.
-
-## COPYRIGHT AND LICENSE
-
-Copyright 1997 Uri Wilensky.
-
-![CC BY-NC-SA 3.0](http://ccl.northwestern.edu/images/creativecommons/byncsa.png)
-
-This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License.  To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.
-
-Commercial licenses are also available. To inquire about commercial licenses, please contact Uri Wilensky at uri@northwestern.edu.
-
-This model was created as part of the project: CONNECTED MATHEMATICS: MAKING SENSE OF COMPLEX PHENOMENA THROUGH BUILDING OBJECT-BASED PARALLEL MODELS (OBPML).  The project gratefully acknowledges the support of the National Science Foundation (Applications of Advanced Technologies Program) -- grant numbers RED #9552950 and REC #9632612.
-
-This model was converted to NetLogo as part of the projects: PARTICIPATORY SIMULATIONS: NETWORK-BASED DESIGN FOR SYSTEMS LEARNING IN CLASSROOMS and/or INTEGRATED SIMULATION AND MODELING ENVIRONMENT. The project gratefully acknowledges the support of the National Science Foundation (REPP & ROLE programs) -- grant numbers REC #9814682 and REC-0126227. Converted from StarLogoT to NetLogo, 2000.
-
-<!-- 1997 2000 -->
+<!--
+ * @Author: Amiya mc.amiya@qq.com
+ * @Date: 2024-11-16 21:16:54
+ * @LastEditors: Amiya mc.amiya@qq.com
+ * @LastEditTime: 2024-11-22 23:57:22
+ * @FilePath: /Panboo-Worus/README.md
+ * @Description: 竹影狼踪的README文件
+-->
+
+<h2 align="center" style="font-weight: 600">竹影狼踪 (Panboo Worus)</h2>
+<p align="center">
+    一个<s>抽象的</s>关于熊猫、竹子、狼在不同的温度以及病毒数量下发展模拟的程序
+    <br />
+    你可以通过调整不同的初始值来获得多个不同的结局
+    <br />
+    <br />
+    <a href="http://www.netlogoweb.org/launch#https://raw.githubusercontent.com/mcAmiya/Panboo-Worus/master/竹影狼踪_panboo-worus.nlogo" target="blank"><strong>🌎 在线访问</strong></a>  |  
+    <a href="https://github.com/mcAmiya/Panboo-Worus/releases" target="blank"><strong>📦️ 下载使用</strong></a>
+</p>
+
+[![Stars](https://img.shields.io/github/stars/mcAmiya/Panboo-Worus?label=stars)](https://github.com/mcAmiya/Panboo-Worus)  [![platform](https://img.shields.io/badge/platform-netlogo-blue.svg)](https://ccl.northwestern.edu/netlogo/)  ![Downloads](https://img.shields.io/github/downloads/mcAmiya/Panboo-Worus/total)  [![GitHub Release](https://img.shields.io/github/v/release/mcAmiya/Panboo-Worus)](https://github.com/mcAmiya/Panboo-Worus/releases)  [![GitHub Release Date](https://img.shields.io/github/release-date/mcAmiya/Panboo-Worus)](https://github.com/mcAmiya/Panboo-Worus/releases)
+
+## ✨ 特性
+
+- ✅ 拥有 `熊猫-狼-竹子` 和 `熊猫-狼` 两个模型版本
+- 📃 拥有生物数量随时间变化图像
+- 🧩 可自由配置各种生物的初始参数
+- 💾 基于 [NetLogo](https://ccl.northwestern.edu/netlogo/) 开源可靠
+- 🖥️ 拥有 [在线版](http://www.netlogoweb.org/launch#https://raw.githubusercontent.com/mcAmiya/Panboo-Worus/master/竹影狼踪_panboo-worus.nlogo) 和 [客户端版](https://ccl.northwestern.edu/netlogo/download.shtml) 支持不同设备使用
+
+## 🧰 UI介绍
+
+| 界面              | 作用                                                                                                                                   |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| model speed       | 模型模拟速度                                                                                                                           |
+| ticks             | 时间步长                                                                                                                               |
+| 模型版本          | 拥有 `熊猫-狼-竹子` 和 `熊猫-狼` 两个模型版本                                                                                        |
+| 熊猫初始个数      | 模拟开始前熊猫的初始个数                                                                                                               |
+| 狼的初始个数      | 模拟开始前狼的初始个数                                                                                                                 |
+| 竹子的生长时间    | 类似于冷却时间 越短竹子生长的越快                                                                                                      |
+| 温度              | 初始温度默认会在0-40度之间<br />每10个时间步长 温度随机 上升 或 下降 1度<br />温度小于50度 或 温度大于50度时 有50%概率导致熊猫个体死亡 |
+| 重置温度          | 用于初始化所有环境（环境病毒数 只可在 `重置数据`时才修改）                                                                           |
+| 运行              | 开始根据设定的参数进行模拟                                                                                                             |
+| 环境病毒数        | 初始化所有熊猫个体自身携带的病毒数量                                                                                                   |
+| 熊猫从食物中获益  | 增加个体自身能量                                                                                                                       |
+| 狼从食物中获益    | 增加个体自身能量                                                                                                                       |
+| 熊猫繁殖          | 随机0-100之间的一个小数 如果小于 `熊猫繁殖`<br />自身能量消耗一半 且 诞生一个新熊猫个体                                              |
+| 狼繁殖            | 随机0-100之间的一个小数 如果小于 `狼繁殖`<br />自身能量消耗一半 且 诞生一个新狼个体                                                  |
+| 显示个体能量？    | 熊猫不可用<br />熊猫个体身上的标签已用于显示个体携带的病毒数量                                                                         |
+| 熊猫的数量        | 当前模拟环境中熊猫个体数                                                                                                               |
+| 狼的数量          | 当前模拟环境中狼个体数                                                                                                                 |
+| 竹子的数量 / 4    | 当前模拟环境中草的数量 因过大影响图像观看 所以除四                                                                                     |
+| 生物数量-时间图像 | 熊猫、狼、竹子(除以四) 数量随时间变化的图像                                                                                            |
+
+## 💻 运行
+
+1. 可以访问 [在线版](http://www.netlogoweb.org/launch#https://raw.githubusercontent.com/mcAmiya/Panboo-Worus/master/竹影狼踪_panboo-worus.nlogo)**（对网络环境有要求）**
+2. 下载 [netlogo](https://ccl.northwestern.edu/netlogo/download.shtml) 和 [nlogo文件](https://github.com/mcAmiya/Panboo-Worus/releases) (需要网络环境) 打开运行
+
+## 📜 开源许可
+
+本项目基于 [NetLogo Wolf Sheep Predation](https://ccl.northwestern.edu/netlogo/models/WolfSheepPredation)
+
+仅供学习研究使用，禁止用于商业及非法用途。
+
+基于 [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) 许可进行开源。
+
+欢迎提 Issue 和 Pull request。
+
+## 🖼️ 截图
+
+![web](./pic/Screenshot_web.png "网页端")
+
+![client](./pic/Screenshot_client.png "客户端")
+
+## 🏆 致谢
+
+|         贡献         |       贡献者       |
+| :------------------: | :----------------: |
+| Wolf Sheep Predation | Wilensky & Reisman |
+| 整体思路 & 熊猫外观 |     @CHAN LAM     |
 @#$#@#$#@
 default
 true
