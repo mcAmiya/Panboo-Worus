@@ -406,9 +406,9 @@ count wolves
 MONITOR
 191
 308
-268
+293
 353
-草的数量 / 4
+竹子的数量 / 4
 count bamboo / 4
 0
 1
@@ -464,7 +464,7 @@ SLIDER
 温度
 0
 100
-25.0
+17.0
 1
 1
 NIL
