@@ -59,9 +59,11 @@
 
 ## 📜 开源许可
 
-本项目仅供学习研究使用，禁止用于商业及非法用途。
+本项目基于[NetLogo Wolf Sheep Predation](https://ccl.northwestern.edu/netlogo/models/WolfSheepPredation)
 
-基于 [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.en.html#license-text) 许可进行开源。
+仅供学习研究使用，禁止用于商业及非法用途。
+
+基于 [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) 许可进行开源。
 
 欢迎提 Issue 和 Pull request。
 
